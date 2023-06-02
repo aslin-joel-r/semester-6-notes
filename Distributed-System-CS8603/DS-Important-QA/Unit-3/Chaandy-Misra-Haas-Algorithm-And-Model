@@ -1,0 +1,20 @@
+# Chandy Misra Haas Algorithm for And Model, with simple example
+
+Let's imagine a scenario where four friends, Alice, Bob, Carol, and Dave, are sharing resources in a distributed system.
+
+- Alice wants to use a resource that Bob currently has. She sends a probe message to Bob asking for the resource.
+- Bob checks if he is also waiting for any resources. If he is not, he replies to Alice saying, "You can have the resource."
+- If Bob is waiting for another resource held by Carol, he sends a probe message to Carol asking for that resource.
+- Carol checks if she is waiting for any resources and passes the probe message to Dave if she is.
+- The probe message continues to travel through the system until it reaches the process that initiated it (in this case, Alice).
+- If Alice receives the probe message she sent, it means there is a cycle in the resource dependency, indicating a deadlock.
+
+For example, let's say the resource dependency is as follows:
+- Alice is waiting for a resource held by Bob.
+- Bob is waiting for a resource held by Carol.
+- Carol is waiting for a resource held by Dave.
+- Dave is waiting for a resource held by Alice.
+
+In this scenario, when Alice's probe message travels through Bob, Carol, and Dave, it eventually reaches Alice again. This means there is a cycle in the resource dependency, indicating a deadlock.
+
+The Chandy-Misra-Haas algorithm helps detect such deadlocks by using probe messages that travel through the system, checking for cycles in the resource dependency. It simplifies the deadlock detection process in a distributed system without requiring complex data structures or excessive computation.
