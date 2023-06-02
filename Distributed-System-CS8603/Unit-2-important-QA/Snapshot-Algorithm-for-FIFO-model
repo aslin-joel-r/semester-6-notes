@@ -1,0 +1,29 @@
+Certainly! Let's consider an example with three processes in a distributed system: Process A, Process B, and Process C. These processes are connected by channels through which they can exchange messages.
+
+1. Initially, all processes are in some state and have not recorded any snapshots.
+
+2. Process A decides to initiate the snapshot process. It records its own state, let's say it has some variables x = 5 and y = 10.
+
+3. After recording its state, Process A sends a marker message along its outgoing channels to Process B and Process C.
+
+4. Upon receiving the marker from Process A, Process B checks if it has already recorded its state. Since it hasn't, it marks the channel from Process A to B as empty.
+
+5. Similarly, Process C also marks the channel from Process A to C as empty since it hasn't recorded its state yet.
+
+6. Process A, after sending the marker, can continue sending regular messages or perform other operations.
+
+7. Meanwhile, Process B decides to initiate the snapshot process. It records its own state, let's say it has variables x = 7 and y = 15.
+
+8. Process B then sends a marker along its outgoing channel to Process C.
+
+9. Upon receiving the marker from Process B, Process C checks if it has already recorded its state. Since it hasn't, it marks the channel from Process B to C as empty.
+
+10. Process B can continue its operations after sending the marker.
+
+11. Finally, Process C decides to initiate the snapshot process. It records its own state, let's say it has variables x = 3 and y = 12.
+
+12. Process C does not have any outgoing channels, so it doesn't need to send any markers.
+
+13. Now, each process has recorded its own state, and the recorded states of the channels reflect the messages received after each process recorded its state and before it received any markers.
+
+By following these steps, each process has taken a snapshot of its own state, and the states of the channels have been recorded accordingly. This allows for a consistent global snapshot of the distributed system to be reconstructed, capturing the state of each process and the messages exchanged between them at that particular moment.
