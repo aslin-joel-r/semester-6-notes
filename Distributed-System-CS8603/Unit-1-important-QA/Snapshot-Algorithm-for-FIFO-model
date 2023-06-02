@@ -1,4 +1,5 @@
-Certainly! Let's consider an example with three processes in a distributed system: Process A, Process B, and Process C. These processes are connected by channels through which they can exchange messages.
+Let's consider an example with three processes in a distributed system: Process A, Process B, and Process C. These processes are connected by channels 
+through which they can exchange messages.
 
 1. Initially, all processes are in some state and have not recorded any snapshots.
 
@@ -24,6 +25,9 @@ Certainly! Let's consider an example with three processes in a distributed syste
 
 12. Process C does not have any outgoing channels, so it doesn't need to send any markers.
 
-13. Now, each process has recorded its own state, and the recorded states of the channels reflect the messages received after each process recorded its state and before it received any markers.
+13. Now, each process has recorded its own state, and the recorded states of the channels reflect the messages received after each process recorded its state
+and before it received any markers.
 
-By following these steps, each process has taken a snapshot of its own state, and the states of the channels have been recorded accordingly. This allows for a consistent global snapshot of the distributed system to be reconstructed, capturing the state of each process and the messages exchanged between them at that particular moment.
+By following these steps, each process has taken a snapshot of its own state, and the states of the channels have been recorded accordingly. 
+This allows for a consistent global snapshot of the distributed system to be reconstructed, capturing the state of each process and the messages exchanged
+between them at that particular moment.
