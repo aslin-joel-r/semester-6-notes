@@ -1,4 +1,6 @@
- Let's explain Lamport's Distributed Mutual Exclusion Algorithm in a simple way with an example.
+# Lamports-Algorithm-Mutual-Exclusion :
+
+Let's explain Lamport's Distributed Mutual Exclusion Algorithm in a simple way with an example.
 
 Imagine we have three sites in a distributed system: Site A, Site B, and Site C. Each site wants to enter a critical section to perform some important task.
 
