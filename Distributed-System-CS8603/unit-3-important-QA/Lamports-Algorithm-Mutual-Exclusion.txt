@@ -1,0 +1,25 @@
+ Let's explain Lamport's Distributed Mutual Exclusion Algorithm in a simple way with an example.
+
+Imagine we have three sites in a distributed system: Site A, Site B, and Site C. Each site wants to enter a critical section to perform some important task.
+
+1. Requesting the critical section:
+   - Site A wants to enter the critical section, so it sends a REQUEST message to Sites B and C, requesting permission.
+   - Site A also places its request on its own request queue.
+   - Similarly, if Site B or Site C wants to enter the critical section, they would send REQUEST messages to the other sites and place their requests on their respective request queues.
+
+2. Granting permission:
+   - When Site B receives a REQUEST message from Site A, it places Site A's request on its request queue and sends a REPLY message back to Site A, granting permission.
+   - Site C does the same if it receives a REQUEST message from Site A.
+
+3. Entering the critical section:
+   - Site A can enter the critical section when two conditions are met:
+     - Condition 1: Site A has received REPLY messages from all other sites, indicating they have granted permission.
+     - Condition 2: Site A's request is at the top of its request queue, meaning it has the highest priority.
+
+4. Releasing the critical section:
+   - After Site A finishes its task in the critical section, it removes its request from its request queue and broadcasts a RELEASE message to all other sites, indicating it has exited the critical section.
+   - When Site B and Site C receive the RELEASE message from Site A, they remove Site A's request from their respective request queues.
+
+In this algorithm, timestamps are used to order the requests and determine their priority. Smaller timestamps have higher priority. The algorithm ensures that requests are executed in the order of their timestamps.
+
+It's important to note that this algorithm has some drawbacks. It relies on the assumption that the communication channels follow FIFO order, and if any site fails, the entire system's progress is halted. Additionally, the algorithm has a high message complexity, requiring 3(N-1) messages per critical section invocation.
