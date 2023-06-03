@@ -1,0 +1,29 @@
+Let's understand Maekawa's Algorithm with a simple example involving four sites: S1, S2, S3, and S4.
+
+In this example, each site has a request set consisting of two other sites. The request sets are as follows:
+- S1: {S2, S3}
+- S2: {S1, S4}
+- S3: {S1, S4}
+- S4: {S2, S3}
+
+Now, let's go through the steps of Maekawa's Algorithm:
+
+1. Requesting the critical section:
+   - Suppose site S1 wants to enter the critical section. It sends a REQUEST(1) message to sites S2 and S3, its request set members.
+   - Similarly, if any other site wants to enter the critical section, it will send a request message to the sites in its request set.
+
+2. Responding to the request:
+   - When S2 receives the REQUEST(1) message from S1, it checks its own status. If it has not sent a REPLY message since the last RELEASE message, it sends a REPLY(2) message to S1.
+   - S3 also checks its status and sends a REPLY(3) message to S1.
+   - Other sites follow the same process when they receive a request message.
+
+3. Executing the critical section:
+   - S1 can enter the critical section only after receiving a REPLY message from all the sites in its request set, which in this case are S2 and S3.
+
+4. Releasing the critical section:
+   - After S1 finishes executing the critical section, it sends a RELEASE(1) message to all the sites in its request set: S2 and S3.
+   - Upon receiving the RELEASE(1) message, S2 and S3 update their status and are ready to send REPLY messages to other waiting sites if needed.
+
+This example demonstrates how Maekawa's Algorithm works. It ensures that a site can enter the critical section only after receiving replies from all the sites in its request set, and it releases the critical section by sending release messages to the sites in its request set.
+
+Note: In a practical scenario, the number of sites and their request sets can be larger, but the principles of Maekawa's Algorithm remain the same.
