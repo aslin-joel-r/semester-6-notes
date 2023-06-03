@@ -1,0 +1,32 @@
+Certainly! Suzuki-Kasami's Broadcast Algorithm is a method for achieving mutual exclusion in a distributed system. Let's understand it with a simple example involving three friends: Alice, Bob, and Carol.
+
+In this example, they all want to take turns using a shared resource, which can only be used by one person at a time. The goal is to ensure that only one person can access the resource at any given time.
+
+Here's how the algorithm works:
+
+1. Requesting the resource:
+   - Whenever a friend, let's say Alice, wants to use the resource, she sends a request message to both Bob and Carol.
+   - The request message includes a sequence number, which helps in keeping track of the order of requests.
+
+2. Granting access:
+   - When Bob receives Alice's request, he compares her sequence number with his own. If Alice's sequence number is higher, he grants her access to the resource.
+   - Similarly, when Carol receives Alice's request, she compares the sequence numbers. If Alice's sequence number is higher than Carol's, she grants access.
+
+3. Using the resource:
+   - Alice can now use the resource since both Bob and Carol have granted her access.
+
+4. Releasing the resource:
+   - After Alice finishes using the resource, she releases it.
+   - Bob and Carol, upon receiving the release notification, update their own sequence numbers to reflect that the resource is now available.
+
+Now, let's see how this plays out in practice:
+
+1. Alice wants to use the resource and sends a request message with sequence number 1 to Bob and Carol.
+2. Bob and Carol both compare Alice's sequence number with their own. Since they haven't made any requests yet, they grant Alice access to the resource.
+3. Alice now uses the resource.
+4. Once Alice is done, she releases the resource.
+5. Bob and Carol update their sequence numbers to 1 (matching Alice's sequence number) since the resource is now available.
+
+This algorithm ensures that each friend gets a turn to use the resource in a fair manner. It relies on comparing sequence numbers to determine priority and allows only one person to access the resource at a time.
+
+The basic principle are: requesting, granting, using, and releasing the resource based on sequence numbers.
