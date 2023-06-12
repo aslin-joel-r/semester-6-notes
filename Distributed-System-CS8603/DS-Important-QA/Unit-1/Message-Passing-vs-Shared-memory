@@ -1,0 +1,14 @@
+Differences between message passing and shared memory systems:
+
+|                  | Message Passing                    | Shared Memory                      |
+|------------------|------------------------------------|------------------------------------|
+| Communication    | Send/receive messages               | Directly access shared variables    |
+| Data Sharing     | No direct access to variables       | Directly share variables            |
+| Address Space    | Private address space for processes | Shared memory accessed by all       |
+| Compatibility    | Suitable for heterogeneous systems  | Not suitable for heterogeneous systems |
+| Synchronization | Message passing primitives         | Locks, semaphores, synchronization mechanisms |
+| Execution Control | Processes execute simultaneously for message exchange | Non-overlapping lifetimes of processes |
+| Efficiency       | Explicit communication, programmer aware of cost | Communication may be implicit, less visibility of cost |
+| Scalability      | Suitable for distributed systems    | Efficient for closely located processes |
+| Complexity       | Involves coordination and overhead  | Simpler communication with direct access to shared data |
+
