@@ -1,0 +1,11 @@
+In simple terms, synchronous and asynchronous refer to different ways of handling tasks or events.
+
+Synchronous: In synchronous operations, tasks or events occur one after another in a predetermined order. When a synchronous task is performed, the program waits for it to complete before moving on to the next task. It's like standing in a queue, where each person waits for the person in front to finish before proceeding. Synchronous operations are predictable and follow a specific sequence.
+
+Example: Imagine you're making a phone call. You dial the number, wait for the other person to pick up, have a conversation, and then hang up. During this time, you can't perform any other actions until the call is complete.
+
+Asynchronous: In asynchronous operations, tasks or events can occur independently and simultaneously without following a specific order. When an asynchronous task is performed, the program initiates the task and continues executing other tasks without waiting for the completion of the asynchronous task. It's like sending an email and continuing to work on other tasks while waiting for a response. Asynchronous operations are non-blocking and allow for parallel execution.
+
+Example: Consider sending a text message. You compose the message, press send, and then continue using your phone for other purposes. The message is sent in the background, and you don't have to wait for a response before performing other actions.
+
+In summary, synchronous operations occur in a predetermined order and require each task to complete before moving on, while asynchronous operations can happen independently and don't require waiting, allowing for concurrent actions.
