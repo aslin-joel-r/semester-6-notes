@@ -1,0 +1,11 @@
+1. Processor Synchrony: In distributed systems where computers don't have a shared clock, processor synchrony refers to making sure that all computers in the system work together and complete their assigned tasks before moving on to the next step of the program.
+
+2. Message Passing Interface (MPI): MPI is a set of rules that allows different computers in a parallel system to send messages to each other. It's like a language that computers use to communicate and cooperate on tasks.
+
+3. Parallel Virtual Machine (PVM): PVM is a software tool that lets multiple computers, even if they are different types, work together as if they were one big computer. It's like connecting different machines to create a more powerful computing system.
+
+4. Remote Procedure Call (RPC): RPC is a way for programs on different computers to ask each other for help by sending requests and receiving responses. It's like making a phone call to ask someone on another computer to perform a specific task for you.
+
+5. Remote Method Invocation (RMI): RMI is a way for objects in a program on one computer to interact with objects on another computer in a distributed network. It's like having objects in different places talk to each other and work together.
+
+6. Common Object Request Broker Architecture (CORBA):CORBA is a framework that allows objects (pieces of software) located on different computers in a network to communicate with each other, regardless of the platform or programming language they were developed in. It provides a messaging mechanism for these distributed objects to interact seamlessly.
