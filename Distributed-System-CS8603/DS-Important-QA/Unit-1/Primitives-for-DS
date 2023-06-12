@@ -1,0 +1,19 @@
+Different Communication Primitives in simpler terms:
+
+1. Message Send: It's like sending a message from one person to another. You specify the recipient and put the message in a box (buffer) to be sent.
+
+2. Message Receive: It's like receiving a message from someone. You specify the sender, and the message is put in a box (buffer) for you to read.
+
+3. Blocking: When you use a blocking communication primitive, it means you wait until the send or receive operation is completed before doing anything else. It's like waiting for a response before moving on.
+
+4. Non-blocking: With non-blocking communication, you don't have to wait for the operation to finish. You can continue doing other things while the communication is happening in the background. It's like sending a message and immediately moving on without waiting for a reply.
+
+5. Buffered: When you use a buffered primitive, the data is first copied from your message box (buffer) to a temporary storage area (kernel buffer) before being sent or received. It's like making a copy of your message before sending it.
+
+6. Unbuffered: In unbuffered communication, the data is directly sent or received without making a copy in a temporary storage area. It's like sending a message directly without making any copies.
+
+7. Synchronous: When communication is synchronous, it means that the send and receive operations are synchronized and need to happen together. It's like a conversation where you wait for the other person to finish speaking before responding.
+
+8. Asynchronous: Asynchronous communication means that the send operation doesn't have to wait for the receive operation to complete. It's like leaving a voicemail message without waiting for the person to answer.
+
+These communication primitives provide different ways for processes in a distributed system to exchange messages and coordinate their actions. The choice of which primitive to use depends on factors like the need for waiting or non-waiting behavior, performance requirements, and the desired interaction between processes.
