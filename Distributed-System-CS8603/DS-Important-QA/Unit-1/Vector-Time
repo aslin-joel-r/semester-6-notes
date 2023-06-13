@@ -1,0 +1,44 @@
+Vector time, also known as vector clocks, is a concept used in distributed systems to track the causal dependencies among events occurring at different processes. It extends the idea of scalar time by capturing not only the individual local clock values but also the relationship between events happening across multiple processes.
+
+In vector time, each process maintains a vector of clock values, where each entry represents the local clock value of a specific process. Initially, all clock values are set to 0.
+
+Let's understand vector time with an example involving three processes: Process A, Process B, and Process C.
+
+At the beginning, the vector clock values for each process are:
+Process A: [0, 0, 0]
+Process B: [0, 0, 0]
+Process C: [0, 0, 0]
+
+Now, let's imagine the following sequence of events:
+
+1. Process A performs an internal event.
+   Process A: [1, 0, 0]
+
+2. Process B receives a message from Process A.
+   Process B updates its vector clock based on the received timestamp and its own local clock value.
+   Process B: [1, 1, 0]
+
+3. Process B performs an internal event.
+   Process B: [1, 2, 0]
+
+4. Process C receives a message from Process B.
+   Process C updates its vector clock based on the received timestamp and its own local clock value.
+   Process C: [1, 2, 1]
+
+5. Process A performs another internal event.
+   Process A: [2, 2, 1]
+
+Now, let's analyze the vector clock values after these events:
+
+Process A: [2, 2, 1]
+Process B: [1, 2, 0]
+Process C: [1, 2, 1]
+
+From the vector clock values, we can determine the causal relationships between events:
+
+- Process A's second internal event (Event 5) happened after Process B's internal event (Event 3), so Process A's clock values are higher than Process B's clock values in the corresponding entries.
+- Process C's message receipt event (Event 4) happened after Process B's internal event (Event 3), so Process C's clock values are higher than Process B's clock values in the corresponding entry.
+
+By comparing the vector clock values, we can establish a partial ordering of events and understand the causal dependencies among them.
+
+In summary, vector time allows us to capture the causal relationships between events across multiple processes by maintaining a vector of clock values. Each entry in the vector corresponds to the local clock value of a specific process. By comparing these vector clock values, we can determine the partial ordering of events and understand their causal dependencies.
