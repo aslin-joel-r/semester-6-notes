@@ -1,0 +1,23 @@
+Imagine a group of friends, Alice, Bob, and Charlie, who communicate with each other by sending messages. In this scenario, they want to maintain the order of their messages based on the causal relationship between them. Causal order means that if Alice sends a message to Bob before sending another message to Charlie, Bob should receive the first message before receiving the second message.
+
+To achieve causal order, they need to follow certain rules:
+
+1. Safety: To prevent causal order from being violated, a message that arrives at a person's end must be buffered until all the messages sent in the past have already arrived. The arrival of a message is transparent to the receiver, and the delivery event corresponds to the reception of the message.
+
+2. Liveness: A message that arrives at a person must eventually be delivered to that person.
+
+To enforce causal order, they can use the Raynal-Schiper-Toueg algorithm, which involves adding additional information to each message. Each message carries a log of all the other messages sent causally before its own send event. This log is used to determine if it is safe to deliver the message.
+
+Let's see how this works in an example:
+
+1. Alice sends a message M1 to Bob, and it contains the log of all the messages she sent before M1. Bob receives M1 and adds it to his log.
+
+2. Later, Alice sends another message M2 to Charlie. This message also carries the log of all the messages she sent before M2. However, Bob hasn't received M1 yet, so M2 is buffered until M1 arrives at Bob's end.
+
+3. Once Bob receives M1, he delivers it. Now, it is safe to deliver M2 to Charlie because all the messages sent in the causal past of M2 (in this case, only M1) have arrived.
+
+By following this protocol, the group ensures that messages are delivered in the order of their causal relationships. This helps maintain a consistent and reliable communication flow within the group.
+
+The algorithm helps optimize the storage and propagation of the log information to reduce overhead. It uses broadcast and multicast communication to distribute the log information among the group members.
+
+In summary, causal order in group communication ensures that messages are delivered in the order of their causal relationships. The Raynal-Schiper-Toueg algorithm provides a way to enforce this order by adding logs to messages and using them to determine the safe delivery of messages. This helps maintain a consistent and reliable communication flow within the group.
