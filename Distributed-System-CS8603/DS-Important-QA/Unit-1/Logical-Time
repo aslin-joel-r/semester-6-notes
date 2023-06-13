@@ -1,0 +1,21 @@
+Logical time refers to a concept used in distributed systems to establish a partial ordering of events that occur across different processes. It provides a way to reason about the causal relationship between events, even in the absence of a global clock.
+
+In simple terms, logical time assigns a timestamp or sequence number to each event, indicating when it occurred relative to other events. These timestamps allow us to compare and order events, helping us understand the causal relationships between them.
+
+Let's consider an example of a distributed system with three processes: Process A, Process B, and Process C.
+
+1. Process A sends a message to Process B.
+2. Process B performs an internal event.
+3. Process C receives the message from Process A.
+
+In logical time, we can assign timestamps to these events as follows:
+
+- Event 1: Process A sends a message to Process B (Timestamp: 1)
+- Event 2: Process B performs an internal event (Timestamp: 2)
+- Event 3: Process C receives the message from Process A (Timestamp: 3)
+
+Based on these timestamps, we can conclude that Event 1 happened before Event 2, and Event 3 happened after both Event 1 and Event 2. This establishes a partial ordering of events, showing the causal relationship between them.
+
+The important aspect of logical time is that it captures the causality between events rather than focusing on their absolute timing. It allows us to reason about the order of events, even in distributed systems where clocks may not be perfectly synchronized.
+
+Logical time is particularly useful for understanding and implementing distributed algorithms, where events in different processes need to be coordinated and synchronized based on their causal dependencies.
