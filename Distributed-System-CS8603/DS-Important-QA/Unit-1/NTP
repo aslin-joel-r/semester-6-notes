@@ -1,0 +1,18 @@
+
+The Network Time Protocol (NTP) is a protocol used in distributed systems to synchronize the clocks of multiple computers. It ensures that computers agree on the current time, even if they have their own internal clocks that may not be perfectly synchronized or accurate.
+
+NTP operates through the following steps:
+
+1. Timestamp Exchange: One computer, let's call it Computer A, periodically sends a message to another computer, Computer B, with a timestamp indicating its current time.
+
+2. Clock Adjustment: Computer B receives the message from Computer A and notes the time at which it arrives. Using this information, Computer B calculates the offset between its own clock and Computer A's clock. The offset represents the difference in time between the two computers.
+
+3. Reverse Communication: Computer B sends a message back to Computer A, including the calculated offset. Computer A receives this message and notes the time at which it arrives.
+
+4. Time Synchronization: Using the offset received from Computer B, Computer A adjusts its clock to align more closely with Computer B's clock. This adjustment helps both computers synchronize their clocks and maintain a consistent time reference.
+
+This process is repeated periodically to continually refine the clock synchronization between the computers.
+
+NTP operates in a hierarchical manner, with primary time servers at the top of the hierarchy and secondary servers and clients below. This hierarchical structure allows for scalability and redundancy in time synchronization across a network.
+
+Overall, NTP plays a vital role in distributed systems by enabling computers to synchronize their clocks, ensuring consistent timekeeping and accurate coordination of events.
