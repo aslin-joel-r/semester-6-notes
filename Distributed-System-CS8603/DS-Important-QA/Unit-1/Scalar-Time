@@ -1,0 +1,33 @@
+
+Consider a distributed system with two processes: Process A and Process B. Each process has its own logical clock, initially set to 0.
+
+Process A performs two internal events: Event 1 and Event 2. After each event, Process A increments its logical clock by 1. So, the logical clock values for Process A would be:
+
+Event 1 in Process A: Clock value = 1
+Event 2 in Process A: Clock value = 2
+
+Now, let's say Process A sends a message to Process B. Along with the message, Process A includes its current logical clock value, which is 2.
+
+Upon receiving the message, Process B updates its own logical clock value to be greater than its current value and the received timestamp. So, Process B sets its logical clock value to 3 (max of its current value and the received timestamp + 1).
+
+Process B then performs an internal event: Event 3. Its logical clock value becomes 4.
+
+Let's summarize the logical clock values for both processes:
+
+Process A:
+- Event 1: Clock value = 1
+- Event 2: Clock value = 2
+
+Process B:
+- Message received from Process A (timestamp 2): Clock value = 3
+- Event 3: Clock value = 4
+
+Now, let's analyze the properties of scalar time:
+
+1. Consistency Property: Scalar clocks satisfy monotonicity, meaning they only increment their values. In our example, the clock values for both processes only increase over time.
+
+2. Total Reordering: Scalar clocks order events in a distributed system. However, events don't necessarily have the same timestamp. To establish a total order, tie-breaking mechanisms are used. For simplicity, let's assume that Process A has a lower identifier value than Process B, so events from Process A will be given higher priority in the ordering.
+
+3. Event Counting: In our example, we can see that the height of an event represents the minimum logical duration required before producing that event. For instance, Event 2 in Process A occurred after Event 1, so its height is 1.
+
+4. No Strong Consistency: Scalar clocks do not provide strong consistency because they merge the logical local clock and logical global clock of a process, losing causal dependency information among events at different processes. This means that events may be ordered based on their timestamps, but the causal relationship between events may not be preserved.
