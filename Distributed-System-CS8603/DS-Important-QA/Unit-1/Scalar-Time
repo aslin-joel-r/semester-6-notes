@@ -1,3 +1,4 @@
+Scalar time is also known as Lamport's logical clock
 
 Consider a distributed system with two processes: Process A and Process B. Each process has its own logical clock, initially set to 0.
 
