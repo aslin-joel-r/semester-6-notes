@@ -1,0 +1,24 @@
+Imagine two friends, Alice and Bob, who want to synchronize their actions using a binary rendezvous. They want to ensure that they both perform certain actions at the same time. Here's how the binary rendezvous algorithm works:
+
+1. Alice and Bob start by enabling their receive commands. This means they are ready to receive messages from each other.
+
+2. If Alice wants to send a message to Bob, she executes the send command, specifying the message she wants to send. This command will only complete when Bob receives the message and sends an acknowledgment (ack) back to Alice.
+
+3. Bob, upon receiving the message from Alice, executes the receive command. He processes the message and then sends an ack message back to Alice to confirm that he has received it.
+
+4. Alice, upon receiving the ack message from Bob, knows that the synchronization is complete. She can now continue with her program execution, knowing that Bob has received her message.
+
+Here's an example to illustrate the algorithm:
+
+1. Alice and Bob both enable their receive commands.
+
+2. Alice wants to synchronize with Bob, so she executes the send command with the message "Hello Bob!"
+
+3. Bob, upon receiving the message, executes the receive command. He processes the message and prepares to send an acknowledgment back to Alice.
+
+4. Bob sends the ack message to Alice, confirming that he has received her message.
+
+5. Alice, upon receiving the ack message, knows that the synchronization is complete. She can now continue with her program execution, knowing that Bob has received her message.
+
+By following this binary rendezvous algorithm, Alice and Bob can synchronize their actions. This ensures that certain actions in their programs occur simultaneously, helping them maintain coordination and consistency in their distributed system.
+
