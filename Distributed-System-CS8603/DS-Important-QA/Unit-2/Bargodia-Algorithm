@@ -1,0 +1,31 @@
+Bagrodia algorithm with processes as an example:
+
+1. Receive commands are forever enabled from all processes.
+2. Once a send command is enabled, it remains enabled until it completes. This means that a send command cannot be executed before the send is completed.
+3. To prevent deadlock, process identifiers are used to introduce asymmetry and break potential crowns (cyclic blocking) that may arise.
+4. Each process attempts to schedule only one send event at a time.
+
+Now, let's go through the steps of the Bagrodia algorithm with a simple example involving three processes: P1, P2, and P3.
+
+1. P1 wants to execute a SEND(M) to a lower priority process P2:
+   - P1 executes the send(M) command and blocks until it receives an acknowledgment (ack(M)) from P2. The send event SEND(M) is now completed.
+   - Any messages, let's say M', from higher priority processes and requests for synchronization (request(M')) from lower priority processes received during the blocking period are queued.
+
+2. P1 wants to execute a SEND(M) to a higher priority process P3:
+   (a) P1 seeks permission from P3 by executing send(request(M)):
+       - This step helps to avoid deadlock situations where processes are cyclically blocked due to message exchanges.
+   (b) While P1 is waiting for permission, it remains unblocked.
+       - If a message M' arrives from a higher priority process, let's say P2, P1 accepts it by scheduling a RECEIVE(M') event and then sends an acknowledgment (ack(M')) back to P2.
+       - If a request(M') arrives from a lower priority process, P1 executes send(permission(M')) to that process and blocks, waiting for the message M' to arrive. Once M' arrives, the RECEIVE(M') event is executed.
+   (c) When the permission(M) message arrives, P1 knows that the partner process P3 is synchronized, and it executes send(M). The SEND(M) is now completed.
+
+3. Request(M) arrival at P1 from a higher priority process P3:
+   - When a request(M) is received by P1 from a higher priority process P3, P1 executes send(permission(M)) to P3 and blocks, waiting for the message M to arrive. Once M arrives, the RECEIVE(M) event is executed, and the process unblocks.
+
+4. Message M arrival at P1 from a higher priority process P2:
+   - When a message M is received by P1 from a higher priority process P2, P1 executes RECEIVE(M) (which is assumed to be always enabled) and then sends an acknowledgment (ack(M)) back to P2.
+
+5. Processing when P1 is unblocked:
+   - When P1 is unblocked, it dequeues the next message (if any) from the queue and processes it as a message arrival, following either rule 3 or 4.
+
+This is a simplified explanation of the Bagrodia algorithm, illustrating the steps involved in message sending, receiving, and synchronization among processes. The algorithm helps ensure that messages are exchanged correctly and in a synchronized manner, preventing deadlocks and preserving the order of message delivery based on priority.
