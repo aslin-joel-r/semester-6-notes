@@ -1,5 +1,5 @@
 Unit 1
-DIASonus Studios:https://youtube.com/playlist?list=PLf6ce4rCOE4dbxSrRtHI1uohkaPHWjvaN
+https://youtube.com/playlist?list=PLf6ce4rCOE4dbxSrRtHI1uohkaPHWjvaN
 Okay elaborate about local time, vector time and scalar time
 
 
@@ -54,17 +54,15 @@ Another type of clock synchronization is called hardware clock synchronization. 
 
 In the context of clock synchronization, hardware and software refer to different methods of achieving clock synchronization. Hardware clock synchronization involves using a dedicated hardware device, such as a GPS receiver or a radio clock, to synchronize the clocks of different machines or devices. This method is typically more expensive than software-based synchronization methods such as NTP or PTP, but offers much higher levels of accuracy and precision. On the other hand, software-based synchronization methods such as NTP or PTP rely on algorithms and protocols to synchronize the clocks of different machines or devices over a network. While these methods are less accurate than hardware-based methods, they are more flexible and can be used in a wider range of systems and environments. Therefore, the terms hardware and software in this context refer to the underlying method of achieving clock synchronization, rather than the distinction between physical and logical systems.
 
-Dia Camp, [14-06-2023 10:51]
 Physical clock synchronization and hardware clock synchronization are not the same thing. Physical clock synchronization refers to the process of synchronizing the clocks of different machines or devices using a common reference clock, such as an atomic clock or GPS. This process can be achieved using different protocols, including NTP and PTP. On the other hand, hardware clock synchronization involves using a dedicated hardware device, such as a GPS receiver or a radio clock, to synchronize the clocks of different machines or devices. The term "physical" is used in physical clock synchronization to emphasize the use of a common reference clock, rather than any specific method of achieving synchronization. I hope this clarifies things.
 
-Dia Camp, [14-06-2023 10:54]
 Is "issues and challenges in distributed systems" the same as " Issues and challenges in designing a distributed systems"
 
-Dia Camp, [14-06-2023 10:54]
 Yes, "issues and challenges in distributed systems" and "issues and challenges in designing a distributed system" are essentially the same thing. When designing a distributed system, there are many issues and challenges that need to be addressed, such as ensuring consistency, managing concurrency, and handling failures. These issues and challenges can have a significant impact on the performance, reliability, and scalability of the system, and must be carefully considered during the design process.
-[14-06-2023 13:47] DIASonus Studios: Unit-2
-[14-06-2023 13:47] DIASonus Studios: https://youtube.com/playlist?list=PLf6ce4rCOE4e5BZuFpZq2TotTeN58Kq92
-[14-06-2023 13:47] DIASonus Studios: Dia Camp:
+
+Unit-2
+https://youtube.com/playlist?list=PLf6ce4rCOE4e5BZuFpZq2TotTeN58Kq92
+
 asynchronous execution with synchronous communication
 
 Explain elaborately with a diagram, analogy and example
@@ -124,9 +122,10 @@ There are two main message passing paradigms in distributed systems: synchronous
 In synchronous message passing, the sender of a message waits for a response from the receiver before proceeding. This means that the sender is blocked until it receives a response, which can lead to delays and reduced performance in some cases. However, synchronous message passing can be useful in situations where it is important to ensure that messages are delivered in a timely and reliable manner. 
 
 In asynchronous message passing, the sender of a message does not wait for a response from the receiver before proceeding. This means that the sender can continue to execute other tasks while waiting for a response, which can improve performance and reduce delays. However, asynchronous message passing can be more complex than synchronous message passing, as it requires additional mechanisms to ensure that messages are delivered in the correct order and that the system remains consistent.
-[14-06-2023 13:47] DIASonus Studios: Unit-3
-[14-06-2023 13:47] DIASonus Studios: https://youtube.com/playlist?list=PLf6ce4rCOE4egAgPvpREWtwbBIqO31Avj
-[14-06-2023 13:47] DIASonus Studios: Dia Camp:
+
+Unit-3
+https://youtube.com/playlist?list=PLf6ce4rCOE4egAgPvpREWtwbBIqO31Avj
+
 Now distributed mutex and deadlock
 
 A distributed mutex is a mechanism used to ensure that only one process at a time can access a shared resource in a distributed system. This is important because multiple processes accessing a shared resource simultaneously can lead to data corruption and other issues. A distributed mutex can be implemented using a variety of techniques, such as using a centralized server to manage access to the resource, or using a distributed algorithm to elect a leader process that has exclusive access to the resource.
@@ -160,9 +159,10 @@ If no preemption is not present, then resources cannot be taken away from a proc
 Finally, if circular wait is not present, then resources must be allocated in a specific order, rather than in a circular fashion. For example, if process A needs resource X to complete its task, and process B needs resource Y to complete its task, then process A must request resource X before process B requests resource Y. If circular wait is not present, then processes cannot be waiting for each other to release resources, and no deadlock can occur.
 
 In summary, if any one of the four conditions for deadlock is absent, then a deadlock cannot occur in a distributed system.
-[14-06-2023 13:47] DIASonus Studios: Unit-4
-[14-06-2023 13:47] DIASonus Studios: https://youtube.com/playlist?list=PLf6ce4rCOE4eoLpKspNhazoaLV5e2u9_M
-[14-06-2023 13:47] DIASonus Studios: Dia Camp:
+
+Unit-4
+https://youtube.com/playlist?list=PLf6ce4rCOE4eoLpKspNhazoaLV5e2u9_M
+
 Now recovery and consensus
 
 Recovery and consensus are two important concepts in distributed systems. Recovery refers to the process of restoring a system to a consistent state after a failure, while consensus refers to the process of agreeing on a single value among a group of processes. 
@@ -182,9 +182,10 @@ A domino effect checkpoint works by taking a checkpoint of a process and all of 
 For example, imagine a distributed system where process A depends on process B, which in turn depends on process C. If a failure occurs in process B, a domino effect checkpoint would be taken of process B and process A. This means that if a failure occurs, both processes A and B can be restored to a consistent state using a single checkpoint.
 
 In summary, a domino effect checkpoint is a technique used in distributed systems to reduce the number of checkpoints needed to recover from a failure. It works by taking a checkpoint of a process and all of its dependent processes, which can improve recovery time and reduce the cost of taking frequent checkpoints.
-[14-06-2023 13:47] DIASonus Studios: Unit-5
-[14-06-2023 13:47] DIASonus Studios: https://youtube.com/playlist?list=PLf6ce4rCOE4eC0JqzAAXCa_IHFWuSyJpc
-[14-06-2023 13:47] DIASonus Studios: Dia Camp:
+
+Unit-5
+https://youtube.com/playlist?list=PLf6ce4rCOE4eC0JqzAAXCa_IHFWuSyJpc
+
 Now P2P and distributed shared memory
 
 P2P (peer-to-peer) and distributed shared memory are two different approaches to distributed computing.
