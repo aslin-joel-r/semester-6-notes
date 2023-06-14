@@ -1,0 +1,11 @@
+Checkpoint-based recovery is a technique used to restore a distributed system to a consistent state after failures. It offers different approaches: uncoordinated checkpointing, coordinated checkpointing, and communication-induced checkpointing.
+
+In uncoordinated checkpointing, each process independently decides when to take a snapshot of its current state. This method has the advantage of lower runtime overhead during normal execution. However, it faces challenges such as the domino effect, slow recovery time, and the need for maintaining multiple checkpoints.
+
+Coordinated checkpointing involves processes working together to ensure that all local checkpoints form a consistent global state. This approach reduces storage overhead and eliminates the need for garbage collection. However, it introduces delays and overhead when taking global checkpoints and requires synchronization among processes.
+
+Communication-induced checkpointing aims to avoid the domino effect while allowing some checkpoints to be taken independently. Processes take autonomous checkpoints and may be forced to take additional checkpoints to maintain the recovery process's progress. This approach piggybacks protocol-related information on application messages to determine when forced checkpoints are necessary.
+
+Model-based checkpointing, a type of communication-induced checkpointing, prevents patterns of communications and checkpoints that can lead to inconsistent states. Processes independently force local checkpoints to prevent undesirable patterns. Index-based checkpointing assigns monotonically increasing indexes to checkpoints, ensuring consistency among checkpoints with the same index.
+
+Each checkpoint-based recovery technique has its advantages and limitations. Understanding these techniques helps in designing efficient and effective recovery mechanisms for distributed systems.
