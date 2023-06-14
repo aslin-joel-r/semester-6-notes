@@ -1,0 +1,53 @@
+Imagine a distributed system with three processors: Processor A, Processor B, and Processor C. These processors communicate with each other by sending messages. The goal is to ensure the system can recover from failures and maintain a consistent state.
+
+Here's a step-by-step example:
+
+1. Initial State:
+   - Processor A is in state S1, Processor B is in state S2, and Processor C is in state S3.
+   - There are no messages sent or received at this point.
+
+2. Event Execution:
+   - Processor A receives a message M1 from Processor B. It processes the message, moves to state S4, and sends out two messages, M2 and M3.
+   - Processor B receives message M3 from Processor A. It processes the message, moves to state S5, and sends out message M4.
+   - Processor C is idle and doesn't receive or send any messages.
+
+3. Local Checkpoints:
+   - Each processor takes a local checkpoint and saves the triplet (state, message, messages sent) in its volatile log:
+     - Processor A: (S4, M1, {M2, M3})
+     - Processor B: (S5, M3, {M4})
+     - Processor C: (S3, - , -) [No messages received or sent]
+
+4. Periodic Checkpointing:
+   - Each processor saves its volatile log in the stable storage, clearing the volatile log for the next round:
+     - Processor A: (S4, M1, {M2, M3}) -> Stored in stable storage
+     - Processor B: (S5, M3, {M4}) -> Stored in stable storage
+     - Processor C: (S3, - , -) -> Stored in stable storage
+
+5. Recovery Initiation:
+   - Processor B crashes and restarts after the failure.
+   - Processor B broadcasts a ROLLBACK message to inform other processors about the failure.
+
+6. Rollback and Recovery:
+   - Each processor receives the ROLLBACK message from Processor B.
+   - Processor A and Processor C compute the number of messages sent to Processor B since their last checkpoints:
+     - Processor A: SENT A->B (CkPt_A) = 2
+     - Processor C: SENT C->B (CkPt_C) = 0
+
+7. Rollback Detection:
+   - Processor A and Processor C send ROLLBACK(i, SENTi->j (CkPt_i)) messages to Processor B:
+     - Processor A sends ROLLBACK(A, 2) to Processor B
+     - Processor C sends ROLLBACK(C, 0) to Processor B
+
+8. Orphan Message Detection:
+   - Processor B compares the number of messages received from Processor A and Processor C to the value in the ROLLBACK messages:
+     - RCVD A->B (CkPt_B) = 0, RCVD C->B (CkPt_B) = 0 (No orphan messages detected)
+
+9. Recovery Point Update:
+   - Since no orphan messages are found, Processor B updates its recovery point to the latest event logged in its stable storage, which is (S5, M3, {M4}).
+
+10. Algorithm Iteration:
+    - Processors exchange ROLLBACK messages again to ensure consistency and perform recovery.
+    - Each processor updates its recovery point based on the received information.
+    - The process continues until at least one processor reaches its final recovery point, ensuring consistency among recovery points.
+
+By following these steps, the distributed system can recover from failures, handle rollbacks, and restore a consistent state
