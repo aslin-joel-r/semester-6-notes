@@ -1,0 +1,39 @@
+
+1. Transit message: A transit message is a message that is in the process of being delivered from one process to another. It is like a message traveling from point A to point B.
+
+2. Delayed message: A delayed message is a message that was sent by a process but has not yet arrived at its destination due to some delay or interruption. It's like a message that got stuck in transit or took longer than expected to reach its destination.
+
+3. Lost message: A lost message is a message that was sent by a process but never reached its intended destination. It's like a message that got lost or disappeared during its journey and never arrived at the intended recipient.
+
+4. Duplicate message: A duplicate message is a message that is received more than once by a process. It's like receiving the same message multiple times, even though it was sent only once. This can happen when the recovery process replays messages and unintentionally sends duplicates.
+
+5. Orphan message: An orphan message is a message that when a process fails and the system is recovering, some messages may become "orphan messages." These messages were sent by a process that failed and didn't reach their intended recipients. They are like lost messages in the system, waiting for someone to handle them or discard them.
+
+
+Lets consider , in a distributed system, there were three processes: Pi, Pj, and Pk. They were working together to perform some tasks. However, one day, process Pi encountered a failure, and all the information it had in its memory was lost.
+
+To fix this, Pi needed to recover from the failure and bring the system back to a consistent state where all processes could resume their work. Pi's state was restored by rolling it back to its most recent checkpoint, called Ci,1.
+
+But there was a problem. When Pi rolled back, it created an orphan message called H. To make the system consistent again, process Pj also had to roll back. So, Pj rolled back to checkpoint Cj,1, which helped eliminate the orphan message H.
+
+However, this rollback introduced another problem. It created a new orphan message called I due to Pj's rollback. To address this, process Pk had to roll back to its checkpoint Ck,1.
+
+Now, with all the rollbacks, the system reached a consistent global state represented by {Ci,1, Cj,1, Ck,1}. It was free from orphan messages, and the processes could continue their work.
+
+But there were still some messages in an erroneous state that needed attention. Some messages, like A, B, and J, had already been received and were handled correctly during the recovery process. They caused no problems and were considered normal messages.
+
+However, messages G, H, and I became "vanished" messages because their send and receive events were completely undone during the rollback process. They also posed no issues.
+
+There were three potentially problematic messages: C, D, E, and F. Message C was in transit during the failure, so it had different possibilities. It could arrive before Pi recovered, while Pi was recovering, or after Pi had completed recovery. Each case needed to be handled correctly.
+
+Message D was a lost message. Although its send event was recorded in the restored state of Pj, the receive event had been undone at Pi. Pj wouldn't resend the message without an additional mechanism since the communication system successfully delivered it before the checkpoint.
+
+Messages E and F were delayed orphan messages, which were a serious concern. When they arrived at their destinations, they had to be discarded because their send events had been undone during the recovery process.
+
+To handle these issues, the system used checkpoint-based recovery. It frequently saved the state of each process and the communication channel. This way, when a failure occurred, the system could be restored to a consistent set of checkpoints.
+
+During recovery, processes generated messages like C, E, and F. Techniques were used to distinguish between different types of messages. Lost messages like D were handled by keeping a message log, which processes could replay during recovery to handle the lost messages. However, this logging and replaying process had to be carefully managed to avoid duplicate messages.
+
+In some cases, overlapping failures could complicate the recovery process even more. For example, process Pj, which was recovering from Pi's failure, could itself fail and forget about Pi's failure. This could lead to inconsistencies in the recovery process.
+
+In conclusion, during the recovery from failures, the main goal was to bring the system back to a consistent state. Messages were categorized into normal, vanished, delayed, lost, and delayed orphan messages, and each category had to be handled correctly to ensure the system's stability and proper functioning.
