@@ -1,0 +1,37 @@
+Certainly! Knapp's Classification of Distributed Deadlock Detection Algorithms categorizes them into four classes based on their approach to detecting deadlocks in a distributed system:
+
+1. Path Pushing Algorithms:
+   - In path pushing algorithms, each site in the distributed system maintains a global Wait For Graph (WFG).
+   - The WFG represents the dependencies between processes in terms of their requests and waits.
+   - When a site detects a potential deadlock, it sends its local WFG to neighboring sites.
+   - The updated WFG is then passed from site to site until a site has enough information to determine if a deadlock exists or not.
+   - This process continues until deadlock detection is complete.
+   - Examples of path pushing algorithms include Menasce-Muntz, Gligor and Shattuck, Ho and Ramamoorthy, Obermarck.
+
+2. Edge Chasing Algorithms:
+   - Edge chasing algorithms verify the presence of a cycle in a distributed graph structure by propagating special messages called probes along the edges of the graph.
+   - Probes are different from regular request and reply messages.
+   - Each site in the distributed system sends probes along its outgoing edges.
+   - If a site receives a matching probe that it sent previously, it can remove the cycle.
+   - Only blocked processes propagate probe messages along their outgoing edges.
+   - Edge chasing algorithms are advantageous because probes are short and fixed-size messages.
+   - Examples of edge chasing algorithms include Chandy et al., Choudhary et al., Kshemkalyani-Singhal, Sinha-Natarajan algorithms.
+
+3. Diffusing Computation Based Algorithms:
+   - Diffusing computation-based algorithms use a diffusion computation technique to detect deadlocks in a distributed system.
+   - Echo algorithms are used to diffuse the deadlock detection computation through the Wait For Graph (WFG).
+   - Processes in the system send query messages along the outgoing edges of the WFG to detect deadlocks.
+   - These queries are successively propagated (diffused) through the edges of the WFG.
+   - When a blocked process receives the first query message for a deadlock detection, it waits for reply messages before sending its own reply.
+   - Subsequent queries receive immediate replies.
+   - The initiator of the deadlock detection algorithm detects a deadlock when it receives replies for all the queries it had sent out.
+   - Examples of diffusing computation-based algorithms include Chandy-Misra-Haas algorithm for one OR model, Chandy-Herman algorithm.
+
+4. Global State Detection-Based Algorithms:
+   - Global state detection-based algorithms utilize the fact that a consistent snapshot of a distributed system can be obtained without freezing the underlying computation.
+   - These algorithms take a snapshot of the system and examine it for the condition of a deadlock.
+   - The snapshot captures the state of all processes and their interactions at a particular point in time.
+   - If a deadlock exists, it will be reflected in the snapshot.
+   - Examples of global state detection-based algorithms are not explicitly mentioned in the given information.
+
+These different classes of distributed deadlock detection algorithms provide various approaches to detecting deadlocks in a distributed system, each with its own advantages and characteristics.
