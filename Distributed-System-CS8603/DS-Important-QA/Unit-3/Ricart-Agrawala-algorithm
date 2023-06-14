@@ -1,19 +1,22 @@
- Let's understand the Ricart-Agrawala algorithm with a simple example:
 
-Imagine we have three sites (processes) in a distributed system: Site A, Site B, and Site C. These sites share a critical section of code that needs to be accessed mutually exclusively.
+Imagine we have three processes in a distributed system: Process A, Process B, and Process C. These processes share a critical section that needs to be accessed mutually exclusively.
 
 1. Requesting the critical section:
-   - Let's say Site A wants to enter the critical section. It sends a REQUEST message to Sites B and C, indicating its timestamp (let's say timestamp A=1).
-   - Site B and Site C receive the REQUEST message from Site A. Since they are not currently in the critical section, they both send a REPLY message back to Site A.
+   - Let's say Process A wants to enter the critical section. It sends a REQUEST message to Processes B and C, indicating its request and current timestamp (let's say timestamp A = 1).
+   - Upon receiving the REQUEST message, Processes B and C compare their own timestamps with the timestamp in the REQUEST message.
 
-2. Executing the critical section:
-   - Site A enters the critical section only when it has received a REPLY message from all other sites. In this case, it waits until it receives the REPLY from Site B and Site C.
+2. Handling the REQUEST message:
+   - If Process B or Process C is not currently in the critical section or does not have a pending request with a lower timestamp, it sends a REPLY message back to Process A.
+   - If Process B or Process C is currently in the critical section or has a pending request with a lower timestamp, it defers sending the REPLY message until it is in a suitable state.
 
-3. Releasing the critical section:
-   - After Site A finishes executing the critical section, it sends REPLY messages to Site B and Site C (if they had pending requests).
-   - If Site B or Site C wants to enter the critical section later, they will need to go through the same process of sending REQUEST messages and receiving REPLY messages from other sites.
+3. Entering the critical section:
+   - Process A can enter the critical section when it has received REPLY messages from all other processes. This indicates that no other process is currently in the critical section or has a pending request with a lower timestamp than Process A's request.
 
-This algorithm ensures that only one site can be in the critical section at a time. It uses timestamps to determine the order of requests, and sites reply to requests based on their own state. If a site has a pending request, it defers the reply until it is in a suitable state.
+4. Releasing the critical section:
+   - After Process A finishes executing the critical section, it sends RELEASE messages to all other processes, indicating that it has exited the critical section.
+   - Upon receiving the RELEASE message, Processes B and C update their states and timestamps accordingly.
 
-By following these steps and exchanging REQUEST and REPLY messages, the Ricart-Agrawala algorithm guarantees mutual exclusion in accessing the critical section among distributed sites.
+5. Handling the RELEASE message:
+   - When Processes B and C receive the RELEASE message from Process A, they check if they have any pending requests. If so, they compare the timestamps of their pending requests with their current state and timestamps to determine if they can enter the critical section.
 
+By following these steps and exchanging REQUEST, REPLY, and RELEASE messages, the Ricart-Agrawala algorithm ensures mutual exclusion among the processes when accessing the critical section. The algorithm uses timestamps and message exchanges to handle concurrent requests and ensure fairness in accessing the critical section.
