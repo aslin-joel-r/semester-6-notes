@@ -1,21 +1,17 @@
-[14-06-2023 13:47] DIASonus Studios: Unit 1
-[14-06-2023 13:47] DIASonus Studios: https://youtube.com/playlist?list=PLf6ce4rCOE4dbxSrRtHI1uohkaPHWjvaN
-[14-06-2023 13:47] DIASonus Studios: Dia Camp, [14-06-2023 10:32]
+Unit 1
+DIASonus Studios:https://youtube.com/playlist?list=PLf6ce4rCOE4dbxSrRtHI1uohkaPHWjvaN
 Okay elaborate about local time, vector time and scalar time
 
-Dia Camp, [14-06-2023 10:32]
+
 Local time is the time kept by a clock on a single machine or process in a distributed system. Vector time and scalar time are two types of logical time used to order events in a distributed system. Vector time is used to capture causality between events, and it assigns a vector of numbers to each event, where each element in the vector corresponds to the number of events that have occurred in each process up to that point. Scalar time, on the other hand, assigns a single number to each event, which can be used to create a total ordering of events.
 
-Dia Camp, [14-06-2023 10:32]
+
 Should I first start with clocks or time
 
-Dia Camp, [14-06-2023 10:32]
 It's probably best to start with time, since clocks are used to measure time. In a distributed system, there are different types of time, such as physical time, which is the time kept by physical clocks, and logical time, which is used to order events in a distributed system. Logical time can be further divided into vector time and scalar time.
 
-Dia Camp, [14-06-2023 10:33]
 Provide visualised examples
 
-Dia Camp, [14-06-2023 10:33]
 Sure, here are some visual examples to help illustrate the differences between local time, vector time, and scalar time:
 
 - Local time: Imagine two machines in a distributed system, each with their own clock, as shown below.
@@ -38,25 +34,24 @@ Machine 2: [0, 1]
 Machine 1: 1
 Machine 2: 2
 
-Dia Camp, [14-06-2023 10:41]
+
 Is synchronous and non synchronous systems same as executions
 
-Dia Camp, [14-06-2023 10:41]
+
 No, synchronous and asynchronous systems refer to how processes communicate with each other in a distributed system, while executions refer to the sequence of events that occur in a single process. In a synchronous system, processes communicate with each other in a coordinated fashion, typically by waiting for each other to complete certain actions before proceeding. In an asynchronous system, processes communicate with each other without waiting for each other to complete certain actions, which can lead to increased concurrency and performance, but also makes it more difficult to ensure consistency and correctness.
 
-Dia Camp, [14-06-2023 10:41]
+
 What about synchronous and non synchronous executions
 
-Dia Camp, [14-06-2023 10:41]
+
 Synchronous and asynchronous executions refer to the way that events are ordered within a single process. In a synchronous execution, events occur one after the other in a well-defined order, while in an asynchronous execution, events can occur concurrently and in an unpredictable order. In a distributed system, it is important to ensure that events are ordered correctly across multiple processes, which is where logical time comes into play. Vector time and scalar time are two types of logical time used to order events in a distributed system to ensure consistency and correctness.
 
-Dia Camp, [14-06-2023 10:50]
+
 Any other types of clock synchronisation I need to be aware of
 
-Dia Camp, [14-06-2023 10:50]
+
 Another type of clock synchronization is called hardware clock synchronization. This method involves using a dedicated hardware device, such as a GPS receiver or a radio clock, to synchronize the clocks of different machines or devices. Hardware clock synchronization is often used in critical systems that require very high levels of accuracy and reliability, such as air traffic control systems or financial trading platforms. This method is typically more expensive than software-based synchronization methods such as NTP or PTP, but offers much higher levels of accuracy and precision.
 
-Dia Camp, [14-06-2023 10:51]
 In the context of clock synchronization, hardware and software refer to different methods of achieving clock synchronization. Hardware clock synchronization involves using a dedicated hardware device, such as a GPS receiver or a radio clock, to synchronize the clocks of different machines or devices. This method is typically more expensive than software-based synchronization methods such as NTP or PTP, but offers much higher levels of accuracy and precision. On the other hand, software-based synchronization methods such as NTP or PTP rely on algorithms and protocols to synchronize the clocks of different machines or devices over a network. While these methods are less accurate than hardware-based methods, they are more flexible and can be used in a wider range of systems and environments. Therefore, the terms hardware and software in this context refer to the underlying method of achieving clock synchronization, rather than the distinction between physical and logical systems.
 
 Dia Camp, [14-06-2023 10:51]
