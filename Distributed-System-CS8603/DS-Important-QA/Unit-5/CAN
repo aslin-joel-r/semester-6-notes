@@ -1,0 +1,22 @@
+Imagine a virtual space that represents a d-dimensional Cartesian coordinate system, similar to a grid. Each point in this space corresponds to a specific key-value pair (K, V). The goal of CAN is to efficiently store and retrieve these key-value pairs in a distributed manner.
+
+Let's say we have a CAN system with a 2-dimensional space, forming a grid. Each node in the system is responsible for storing a portion of the key-value pairs. When a new node joins the system, it is assigned a region in the coordinate space.
+
+For example, let's consider a CAN system with four nodes: A, B, C, and D. Each node is responsible for storing a specific region of the coordinate space:
+
+- Node A: Region R1 (0, 0) to (0.5, 0.5)
+- Node B: Region R2 (0.5, 0) to (1, 0.5)
+- Node C: Region R3 (0, 0.5) to (0.5, 1)
+- Node D: Region R4 (0.5, 0.5) to (1, 1)
+
+Now, let's say we want to store a key-value pair (K1, V1) in the system. We apply a hash function to the key K1, which maps it to a specific point in the coordinate space. Let's assume it is mapped to the point (0.3, 0.4).
+
+Since point (0.3, 0.4) lies within the region R1 of Node A, Node A becomes responsible for storing the key-value pair (K1, V1). Similarly, other key-value pairs are distributed across the nodes based on their corresponding points in the coordinate space.
+
+Now, if we want to retrieve the value V1 associated with key K1, we use the same hash function to map K1 to the point (0.3, 0.4). By knowing the regions assigned to each node, we can determine that Node A is responsible for storing the key-value pair (K1, V1). Therefore, we access Node A to retrieve the value V1.
+
+To achieve routing in the CAN system, each node maintains a routing table that tracks its neighboring nodes in the coordinate space. When a request is made to insert, search, or delete a key-value pair, intermediate nodes use a greedy routing algorithm. They forward the request to the neighbor node that is closest to the destination coordinates in the coordinate space.
+
+CAN provides scalability, fault tolerance, and decentralization. As more nodes join or depart from the system, the regions are dynamically adjusted and redistributed among the participating nodes to ensure load balancing and prevent fragmentation. CAN also handles node failures through a protocol called TAKEOVER, where neighbors take over the failed node's region.
+
+By organizing key-value pairs in a logical coordinate space and utilizing efficient routing algorithms, CAN offers an effective and scalable solution for distributed storage and retrieval of data.
